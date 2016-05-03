@@ -14,25 +14,35 @@
 
     <sws:annotation-driven />
 
-    <bean
+    <!--<bean
             class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
         <constructor-arg ref="marshaller" />
-    </bean>
+    </bean>-->
     <bean class="org.springframework.ws.transport.http.WsdlDefinitionHandlerAdapter" />
 
-    <sws:dynamic-wsdl id="TemperatureConverter" portTypeName="TemperatureService"
+    <!--<sws:dynamic-wsdl id="TemperatureConverter" portTypeName="TemperatureService"
                       locationUri="/temperature" targetNamespace="http://www.example.org/authentication/definitions">
         <sws:xsd location="/WEB-INF/schemas/example/TemperatureRequest.xsd" />
         <sws:xsd location="/WEB-INF/schemas/example/TemperatureResponse.xsd" />
-    </sws:dynamic-wsdl>
+    </sws:dynamic-wsdl>-->
+    <!--<sws:dynamic-wsdl id="SampleSOAP" portTypeName="SampleSOAPService"
+                      locationUri="/sample" targetNamespace="http://www.example.org/authentication/definitions">
+        <sws:xsd location="/WEB-INF/schemas/xsd/data.xsd" />
+    </sws:dynamic-wsdl>-->
 
-    <sws:dynamic-wsdl id="StudentService" portTypeName="StudentService"
+    <!--<sws:dynamic-wsdl id="StudentService" portTypeName="StudentService"
                       locationUri="/student" targetNamespace="http://www.example.org/authentication/definitions">
         <sws:xsd location="/WEB-INF/schemas/xsd/req.xsd" />
-    </sws:dynamic-wsdl>
+    </sws:dynamic-wsdl>-->
 
+    <bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
+        <description>An endpoint mapping strategy that looks for @Endpoint and @PayloadRoot annotations.</description>
+    </bean>
+    <bean class="org.springframework.ws.server.endpoint.adapter.DefaultMethodEndpointAdapter">
+        <description>Enables the MessageDispatchServlet to invoke methods requiring OXM marshalling.</description>
+    </bean>
+    <!--
     <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
         <property name="contextPath" value="base.controllers.api.soap.generated" />
-    </bean>
-
+    </bean>-->
 </beans>

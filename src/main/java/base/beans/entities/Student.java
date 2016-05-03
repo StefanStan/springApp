@@ -3,11 +3,13 @@ package base.beans.entities;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "students")
 @ManagedBean(name = "studentBean")
 @RequestScoped
+@XmlRootElement(name = "student", namespace = "http://springApp.com/data/schemas")
 public class Student implements Comparable{
 
    @Column(name = "id")
