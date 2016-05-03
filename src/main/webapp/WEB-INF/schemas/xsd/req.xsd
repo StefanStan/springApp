@@ -1,0 +1,21 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:data="http://springApp.com/data/schemas"
+           elementFormDefault="qualified"
+           targetNamespace="http://springApp.com/req/schemas">
+    <xs:import namespace="http://springApp.com/data/schemas" schemaLocation="data.xsd"/>
+
+    <xs:element name="StudentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:integer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="StudentResponse">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Student" type="data:Student"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
