@@ -1,5 +1,5 @@
 
-package base.controllers.api.soap.generatedForExample;
+package base.controllers.api.soap.generated;
 
 import javax.xml.bind.annotation.*;
 

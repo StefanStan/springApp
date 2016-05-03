@@ -1,5 +1,5 @@
 
-package base.controllers.api.soap.generatedForExample;
+package base.controllers.api.soap.generated;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * base.controllers.api.soap.generatedForExample in the base.controllers.api.soap.generatedForExample package.
+ * base.controllers.api.soap.generated in the base.controllers.api.soap.generated package.
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -23,7 +23,7 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: base.controllers.api.soap.generatedForExample
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: base.controllers.api.soap.generated
      * 
      */
     public ObjectFactory() {

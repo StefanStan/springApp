@@ -1,7 +1,7 @@
-package base.controllers;
+package base.controllers.api.soap;
 
-import base.controllers.api.soap.generatedForExample.TemperatureRequest;
-import base.controllers.api.soap.generatedForExample.TemperatureResponse;
+import base.controllers.api.soap.generated.TemperatureRequest;
+import base.controllers.api.soap.generated.TemperatureResponse;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;

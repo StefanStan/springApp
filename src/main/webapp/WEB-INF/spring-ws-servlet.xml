@@ -22,12 +22,17 @@
 
     <sws:dynamic-wsdl id="TemperatureConverter" portTypeName="TemperatureService"
                       locationUri="/temperature" targetNamespace="http://www.example.org/authentication/definitions">
-        <sws:xsd location="/WEB-INF/schemas/xsd/TemperatureRequest.xsd" />
-        <sws:xsd location="/WEB-INF/schemas/xsd/TemperatureResponse.xsd" />
+        <sws:xsd location="/WEB-INF/schemas/example/TemperatureRequest.xsd" />
+        <sws:xsd location="/WEB-INF/schemas/example/TemperatureResponse.xsd" />
+    </sws:dynamic-wsdl>
+
+    <sws:dynamic-wsdl id="StudentService" portTypeName="StudentService"
+                      locationUri="/student" targetNamespace="http://www.example.org/authentication/definitions">
+        <sws:xsd location="/WEB-INF/schemas/xsd/req.xsd" />
     </sws:dynamic-wsdl>
 
     <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-        <property name="contextPath" value="base.controllers.api.soap.generatedForExample" />
+        <property name="contextPath" value="base.controllers.api.soap.generated" />
     </bean>
 
 </beans>

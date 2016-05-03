@@ -19,27 +19,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <!-- The schema directory or xsd files. -->
-                    <schemaDirectory>${basedir}/src/main/webapp/WEB-INF/schemas/xsd</schemaDirectory>
-                    <!-- The package in which the source files will be generated. -->
-                    <packageName>springApp</packageName>
-                    <!-- The working directory to create the generated java source files. -->
-                    <outputDirectory>${basedir}/src/main/java/base/controllers/api/soap/generated</outputDirectory>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
