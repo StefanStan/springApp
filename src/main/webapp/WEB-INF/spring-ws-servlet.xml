@@ -1,48 +1,48 @@
 <beans xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:sws="http://www.springframework.org/schema/web-services"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd
         http://www.springframework.org/schema/web-services
-        http://www.springframework.org/schema/web-services/web-services-2.0.xsd">
+        http://www.springframework.org/schema/web-services/web-services-2.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
     <!-- Scan the following packages -->
-    <context:component-scan base-package="base" />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <context:component-scan base-package="base.controllers.api.soap"/>
 
-    <sws:annotation-driven />
+    <sws:annotation-driven/>
 
-    <!--<bean
-            class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
-        <constructor-arg ref="marshaller" />
-    </bean>-->
-    <bean class="org.springframework.ws.transport.http.WsdlDefinitionHandlerAdapter" />
-
-    <!--<sws:dynamic-wsdl id="TemperatureConverter" portTypeName="TemperatureService"
-                      locationUri="/temperature" targetNamespace="http://www.example.org/authentication/definitions">
-        <sws:xsd location="/WEB-INF/schemas/example/TemperatureRequest.xsd" />
-        <sws:xsd location="/WEB-INF/schemas/example/TemperatureResponse.xsd" />
-    </sws:dynamic-wsdl>-->
-    <!--<sws:dynamic-wsdl id="SampleSOAP" portTypeName="SampleSOAPService"
-                      locationUri="/sample" targetNamespace="http://www.example.org/authentication/definitions">
-        <sws:xsd location="/WEB-INF/schemas/xsd/data.xsd" />
-    </sws:dynamic-wsdl>-->
-
-    <!--<sws:dynamic-wsdl id="StudentService" portTypeName="StudentService"
-                      locationUri="/student" targetNamespace="http://www.example.org/authentication/definitions">
-        <sws:xsd location="/WEB-INF/schemas/xsd/req.xsd" />
-    </sws:dynamic-wsdl>-->
+    <sws:interceptors>
+        <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+    </sws:interceptors>
 
     <bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
-        <description>An endpoint mapping strategy that looks for @Endpoint and @PayloadRoot annotations.</description>
+    <description>An endpoint mapping strategy that looks for @Endpoint and @PayloadRoot annotations.</description>
     </bean>
-    <bean class="org.springframework.ws.server.endpoint.adapter.DefaultMethodEndpointAdapter">
-        <description>Enables the MessageDispatchServlet to invoke methods requiring OXM marshalling.</description>
+    <bean class="org.springframework.ws.server.endpoint.adapter.MessageEndpointAdapter">
+    <description>Enables the MessageDispatchServlet to invoke methods requiring OXM marshalling.</description>
     </bean>
-    <!--
+
+    <bean class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
+        <constructor-arg ref="marshaller"/>
+    </bean>
+
+    <bean class="org.springframework.ws.transport.http.WsdlDefinitionHandlerAdapter"/>
+
+    <sws:dynamic-wsdl id="students" portTypeName="StudentsService"
+                      locationUri="/api/soap/students" targetNamespace="http://springApp.com/data/schemas">
+        <sws:xsd location="/WEB-INF/schemas/xsd/students.xsd"/>
+    </sws:dynamic-wsdl>
+
     <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-        <property name="contextPath" value="base.controllers.api.soap.generated" />
-    </bean>-->
+        <property name="contextPath" value="base.controllers.api.soap.pojo"/>
+    </bean>
+
+    <bean class="org.springframework.ws.soap.server.endpoint.SoapFaultAnnotationExceptionResolver"/>
 </beans>

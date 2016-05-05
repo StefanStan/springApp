@@ -1,5 +1,5 @@
 <beans xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -11,43 +11,15 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
-    <!-- Let spring scan for Transactional components (ex: @Transactional) -->
-    <tx:annotation-driven />
-
     <!-- Let spring scan for MVC components (ex:@Controller) -->
     <mvc:annotation-driven />
 
     <!-- Scan the following packages -->
     <context:component-scan base-package="base" />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <mvc:resources mapping="/resources/**" location="resources" />
 
-    <!-- Define datasource bean -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url"
-                  value="jdbc:postgresql://localhost:5432/SpringApp" />
-        <property name="username" value="postgres" />
-        <property name="password" value="parola" />
-    </bean>
-    <!-- Define the session factory -->
-    <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="base.beans.entities" />
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">validate</prop>
-            </props>
-        </property>
-    </bean>
-    <!-- Define transaction manager -->
-    <bean id="transactionManager"
-          class="org.springframework.orm.hibernate5.HibernateTransactionManager"
-          p:sessionFactory-ref="sessionFactory">
-    </bean>
     <!-- Web resources resolver bean -->
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">

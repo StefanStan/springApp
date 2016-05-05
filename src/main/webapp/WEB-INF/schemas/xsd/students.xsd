@@ -1,0 +1,65 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:data="http://springApp.com/schemas"
+           elementFormDefault="qualified"
+           targetNamespace="http://springApp.com/schemas">
+
+    <xs:element name="getStudentsResp">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="students" type="data:Students"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getStudentReq">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getStudentResp">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" type="data:Student"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createStudentReq">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" type="data:Student"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createStudentResp">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="student" type="data:Student"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Student">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Students">
+        <xs:sequence maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="student" type="data:Student"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Project">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="capacity" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
