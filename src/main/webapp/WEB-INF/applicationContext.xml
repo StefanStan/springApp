@@ -63,7 +63,14 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionAnnotatedClass"/>
     </aop:config>
 
+    <!--
+    Important for @Secured annotations to work.
+    Here we enable all three of them - @Secured, @PreAuthorize and @RolesAllowed. You may choose what you use.
+    Check MainRestController for examples.
+    -->
+    <!--<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled" jsr250-annotations="enabled"/>-->
 
     <import resource="rest-servlet.xml"/>
     <import resource="spring-ws-servlet.xml"/>
+    <import resource="spring-security.xml"/>
 </beans>

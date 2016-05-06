@@ -42,7 +42,7 @@
 
     <properties>
         <spring.version>4.2.5.RELEASE</spring.version>
-        <spring.security.version>4.0.4.RELEASE</spring.security.version>
+        <spring.security.version>4.1.0.RELEASE</spring.security.version>
         <hibernate.version>5.1.0.Final</hibernate.version>
         <jackson.version>2.7.3</jackson.version>
         <slf4j.version>1.7.2</slf4j.version>
@@ -102,10 +102,14 @@
         <!-- Spring Security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>${spring.security.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
@@ -227,26 +231,7 @@
             <version>${log4j.version}</version>
         </dependency>
 
-        <!-- Other -->
-        <dependency>
-            <groupId>wsdl4j</groupId>
-            <artifactId>wsdl4j</artifactId>
-            <version>1.6.3</version>
-        </dependency>
-        <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-
-
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>3.2.0.RELEASE</version>
-        </dependency>
-
+        <!-- AOP -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
@@ -258,7 +243,7 @@
             <version>1.7.3</version>
         </dependency>
 
-
+        <!-- XML -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
@@ -269,6 +254,26 @@
             <artifactId>jaxb-impl</artifactId>
             <version>2.2.5</version>
         </dependency>
+
+        <!-- Other -->
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>1.6.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>

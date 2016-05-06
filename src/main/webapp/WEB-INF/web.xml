@@ -17,6 +17,7 @@
         </listener-class>
     </listener>
 
+    <!-- REST -->
     <servlet>
         <servlet-name>rest</servlet-name>
         <servlet-class>
@@ -30,6 +31,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!-- SOAP -->
     <servlet>
         <servlet-name>spring-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
@@ -40,4 +42,17 @@
         <servlet-name>spring-ws</servlet-name>
         <url-pattern>/api/soap/*</url-pattern>
     </servlet-mapping>
+
+    <!-- Spring Security -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
 </web-app>
