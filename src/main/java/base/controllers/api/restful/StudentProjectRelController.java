@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 /**
@@ -25,6 +26,7 @@ public class StudentProjectRelController {
     @Qualifier("studentProjectRelServiceJpaImpl")
     StudentProjectRelService service;
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/project/{projId}/students",
             method = RequestMethod.GET,
             headers = "Accept=application/json",
@@ -37,6 +39,7 @@ public class StudentProjectRelController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/student/{studId}/project/{projId}",
             method = RequestMethod.POST,
             headers = "Accept=application/json",
@@ -50,6 +53,7 @@ public class StudentProjectRelController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/student/{studId}/project/{projId}",
             method = RequestMethod.DELETE,
             headers = "Accept=application/json")

@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 /**
@@ -22,6 +23,11 @@ public class StudentController {
     @Qualifier("studentServiceJpaImpl")
     StudentService service;
 
+    // Spring annotation virtually equivalent with @RolesAllowed - except for...
+    // WARNING: @Secured by default works only with roles starting with ROLE_ prefix, see this for more:
+    // I don't want to mess with this route - that's why ADMIN does NOT have access to this page
+//    @Secured({"ROLE_SPECIAL", "ADMIN"})
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/students",
             method = RequestMethod.POST,
             headers = "Accept=application/json",
@@ -34,6 +40,7 @@ public class StudentController {
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/students",
             method = RequestMethod.GET,
             headers = "Accept=application/json",
@@ -45,6 +52,7 @@ public class StudentController {
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/student/{id}",
             method = RequestMethod.GET,
             headers = "Accept=application/json",
@@ -61,6 +69,7 @@ public class StudentController {
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/student/{id}",
             method = RequestMethod.DELETE,
             headers = "Accept=application/json")
@@ -72,6 +81,7 @@ public class StudentController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/student/{id}",
             method = RequestMethod.PUT,
             headers = "Accept=application/json",

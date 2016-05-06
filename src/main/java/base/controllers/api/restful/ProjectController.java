@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public class ProjectController {
     @Qualifier("projectServiceJpaImpl")
     ProjectServiceJpaImpl service;
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/projects",
             method = RequestMethod.POST,
             headers = "Accept=application/json",
@@ -34,6 +36,7 @@ public class ProjectController {
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/projects",
             method = RequestMethod.GET,
             headers = "Accept=application/json",
@@ -45,6 +48,7 @@ public class ProjectController {
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/project/{id}",
             method = RequestMethod.GET,
             headers = "Accept=application/json",
@@ -61,6 +65,7 @@ public class ProjectController {
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/project/{id}",
             method = RequestMethod.DELETE,
             headers = "Accept=application/json")
@@ -72,6 +77,7 @@ public class ProjectController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/project/{id}",
             method = RequestMethod.PUT,
             headers = "Accept=application/json",

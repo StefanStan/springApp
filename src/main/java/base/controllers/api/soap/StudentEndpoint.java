@@ -10,6 +10,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import javax.annotation.security.RolesAllowed;
+
 /**
  * Created by StefanS on 04.05.2016.
  */
@@ -20,6 +22,7 @@ public class StudentEndpoint {
     @Qualifier("studentServiceJpaImpl")
     StudentService service;
 
+    @RolesAllowed({"ADMIN","user"})
     @PayloadRoot(localPart = "createStudentReq", namespace = "http://springApp.com/schemas")
     public @ResponsePayload CreateStudentResp createStudent(@RequestPayload CreateStudentReq createStudentReq) {
 
@@ -30,6 +33,7 @@ public class StudentEndpoint {
         return resp;
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @PayloadRoot(localPart = "getStudents", namespace = "http://springApp.com/schemas")
     public @ResponsePayload GetStudentsResp getStudents() {
 
@@ -38,6 +42,7 @@ public class StudentEndpoint {
         return resp;
     }
 
+    @RolesAllowed({"ADMIN","user"})
     @PayloadRoot(localPart = "getStudentReq", namespace = "http://springApp.com/schemas")
     public @ResponsePayload GetStudentResp getStudent(@RequestPayload GetStudentReq getStudentReq) {
 
