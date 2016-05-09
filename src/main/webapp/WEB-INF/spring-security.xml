@@ -29,11 +29,11 @@
 
 	<bean:bean id="userDetailService" class="base.security.impl.MyUserDetailsService"/>
 
-	<!--<bean:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>-->
+	<bean:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 	<authentication-manager id="restAuthenticationManager">
 		<authentication-provider user-service-ref="userDetailService">
-			<!--<password-encoder ref="encoder" />-->
+			<password-encoder ref="encoder" />
 		</authentication-provider>
 	</authentication-manager>
 
