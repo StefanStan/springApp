@@ -77,6 +77,11 @@ public final class TokenAuthenticationFilter extends GenericFilterBean {
 		String username = httpRequest.getHeader(HEADER_USERNAME);
 		String password = httpRequest.getHeader(HEADER_PASSWORD);
 
+		MyRequestWrapper myRequestWrapper = new MyRequestWrapper(httpRequest);
+		String body = myRequestWrapper.getBody();
+		System.out.println("BODY: " + body);
+
+
 		if (authorization != null) {
 			checkBasicAuthorization(authorization, httpResponse);
 			doNotContinueWithRequestProcessing(httpRequest);

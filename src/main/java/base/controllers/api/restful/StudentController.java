@@ -16,7 +16,6 @@ import java.util.List;
  * Created by StefanS on 25.04.2016.
  */
 @RestController
-@RequestMapping("/api/rest")
 public class StudentController {
 
     @Autowired
