@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+<header>
+    <link rel="stylesheet" href="static/css/login.css" />
+
+    <script src="static/js/jquery/jquery-1.9.1.js"></script>
+    <script src="static/js/login.js"></script>
+</header>
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
-<section class="loginform cf">
-    <form name="login" action="api/rest/login" method="post" accept-charset="utf-8">
-        <ul>
-            <li><label>Username</label>
-                <input name="username" placeholder="username" required></li>
-            <li><label>Password</label>
-                <input type="password" name="password" placeholder="password" required></li>
-            <li>
-                <input type="submit" value="Login"></li>
-        </ul>
-    </form>
-</section>
+    <div id="loginContainer">
+        <span>Login</span>
+        <fieldset id="body">
+            <fieldset>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" />
+            </fieldset>
+            <fieldset>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" />
+            </fieldset>
+
+            <input type="submit" id="login" value="Sign in here" onclick="login()" />
+            <label id="statusOfLogin">Status: </label>
+        </fieldset>
+    </div>
 </body>
 </html>

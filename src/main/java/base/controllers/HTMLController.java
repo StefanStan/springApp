@@ -25,4 +25,12 @@ public class HTMLController {
 
         return "static/login.html";
     }
+
+    @RequestMapping(value = "/home",
+            method = RequestMethod.GET
+    )
+    public String home() {
+
+        return "static/home.html";
+    }
 }

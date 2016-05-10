@@ -53,17 +53,28 @@ public final class TokenAuthenticationFilter extends GenericFilterBean {
 
 		boolean authenticated = checkToken(httpRequest, httpResponse);
 
-		if (canRequestProcessingContinue(httpRequest) && httpRequest.getMethod().equals("POST")) {
-			// If we're not authenticated, we don't bother with logout at all.
-			// Logout does not work in the same request with login - this does not make sense,
-			// because logout works with token and login returns it.
-			if (authenticated) {
-				checkLogout(httpRequest);
-			}
+		if(httpRequest.getPathInfo().equals("/login")) {
 
-			// Login works just fine even when we provide token that is valid up to this request,
-			// because then we get a new one.
-			checkLogin(httpRequest, httpResponse);
+			if(httpRequest.getMethod().equals("POST")) {
+
+				if(canRequestProcessingContinue(httpRequest)) {
+					// If we're not authenticated, we don't bother with logout at all.
+					// Logout does not work in the same request with login - this does not make sense,
+					// because logout works with token and login returns it.
+					if (authenticated) {
+						checkLogout(httpRequest);
+					}
+
+					// Login works just fine even when we provide token that is valid up to this request,
+					// because then we get a new one.
+					checkLogin(httpRequest, httpResponse);
+				}
+
+				if (canRequestProcessingContinue(httpRequest)) {
+
+					httpResponse.sendError(HttpServletResponse.SC_BAD_REQUEST);
+				}
+			}
 		}
 
 		if (canRequestProcessingContinue(httpRequest)) {
@@ -76,11 +87,6 @@ public final class TokenAuthenticationFilter extends GenericFilterBean {
 		String authorization = httpRequest.getHeader("Authorization");
 		String username = httpRequest.getHeader(HEADER_USERNAME);
 		String password = httpRequest.getHeader(HEADER_PASSWORD);
-
-		MyRequestWrapper myRequestWrapper = new MyRequestWrapper(httpRequest);
-		String body = myRequestWrapper.getBody();
-		System.out.println("BODY: " + body);
-
 
 		if (authorization != null) {
 			checkBasicAuthorization(authorization, httpResponse);

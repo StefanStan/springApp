@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<header>
+    <script src="static/js/home.js"></script>
+    <link rel="stylesheet" href="static/js/jquery/jquery-ui.css" />
+
+    <script src="static/js/jquery/jquery-1.9.1.js"></script>
+    <script src="static/js/jquery/jquery-ui.js"></script>
+    <script src="static/js/login.js"></script>
+</header>
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body onload="init()">
+
+    <span>Add Student</span>
+    <fieldset id="body">
+        <fieldset>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" />
+        </fieldset>
+        <fieldset>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" />
+        </fieldset>
+
+        <input type="submit" id="addStudent" value="Add Student" onclick="addStudent()" />
+        <label id="statusOfAdd">Status: </label>
+    </fieldset>
+
+    <div id="container">
+        <div id="studentsContainer">
+            <input type="submit" id="getStudentsREST" value="Get Students" onclick="getStudents()"/>
+            <div id="studentsContainerLeft">
+                <p>REST API results</p>
+                <ul id="studentsListREST">
+
+                </ul>
+            </div>
+            <br>
+            <div id="studentsContainerRight">
+                <p>SOAP API results</p>
+                <ul id="studentsListSOAP">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

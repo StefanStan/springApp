@@ -15,7 +15,7 @@
     <!-- Scan the following packages -->
     <context:component-scan base-package="base" />
 
-    <mvc:resources mapping="/resources/**" location="WEB-INF/resources" />
+    <mvc:resources mapping="/resources/**" location="resources" />
     <mvc:resources mapping="/static/**" location="WEB-INF/static/" />
 
     <!-- Define the JSON message converter: request <-> response. From entity

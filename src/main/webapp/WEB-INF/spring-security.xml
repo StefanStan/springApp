@@ -21,7 +21,7 @@
 
 		<custom-filter ref="restAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
 
-		<intercept-url pattern="/api/rest/login" access="permitAll"/>
+		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/api/**" access="isFullyAuthenticated()"/>
 	</http>
 
