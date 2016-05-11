@@ -18,7 +18,7 @@ public class ProjectDAOJpaImpl extends GenericDAOJpaImpl<Project, Integer> imple
     @Override
     public Project findById(Integer id) {
 
-        return (Project) sessionFactory.getCurrentSession().get(Project.class, id);
+        return sessionFactory.getCurrentSession().get(Project.class, id);
     }
 
     @SuppressWarnings("unchecked")

@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface GenericService<T, Id extends Serializable> {
 
-    void persist(T entity);
+    void save(T entity);
 
     void update(T entity);
 

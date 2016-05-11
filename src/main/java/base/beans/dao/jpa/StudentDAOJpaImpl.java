@@ -18,7 +18,7 @@ public class StudentDAOJpaImpl extends GenericDAOJpaImpl<Student, Integer> imple
     @Override
     public Student findById(Integer id) {
 
-        return (Student) sessionFactory.getCurrentSession().get(Student.class, id);
+        return sessionFactory.getCurrentSession().get(Student.class, id);
     }
 
     @SuppressWarnings("unchecked")

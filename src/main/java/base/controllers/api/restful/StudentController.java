@@ -22,10 +22,6 @@ public class StudentController {
     @Qualifier("studentServiceSpringDataImpl")
     StudentService service;
 
-    // Spring annotation virtually equivalent with @RolesAllowed - except for...
-    // WARNING: @Secured by default works only with roles starting with ROLE_ prefix, see this for more:
-    // I don't want to mess with this route - that's why ADMIN does NOT have access to this page
-//    @Secured({"ROLE_SPECIAL", "ADMIN"})
     @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/students",
             method = RequestMethod.POST,

@@ -35,7 +35,7 @@ public class StudentServiceSpringDataImpl extends GenericServiceSpringDataImpl<S
 
             try {
 
-                persist(student);
+                save(student);
                 Student res = new Student();
                 res.setId(student.getId());
                 return res;

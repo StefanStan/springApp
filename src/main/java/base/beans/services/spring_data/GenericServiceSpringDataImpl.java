@@ -16,7 +16,7 @@ public abstract class GenericServiceSpringDataImpl<T, Integer extends Serializab
     public abstract GenericRepository getRepository() ;
 
     @Override
-    public void persist(T entity) {
+    public void save(T entity) {
 
         getRepository().saveAndFlush(entity);
     }

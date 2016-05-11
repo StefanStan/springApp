@@ -34,7 +34,7 @@ public class ProjectServiceSpringDataImpl extends GenericServiceSpringDataImpl<P
 
             try {
 
-                persist(project);
+                save(project);
                 Project res = new Project();
                 res.setId(project.getId());
                 return res;

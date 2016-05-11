@@ -34,7 +34,7 @@ public class ProjectServiceJpaImpl extends GenericServiceJpaImpl<Project, Intege
 
             try {
 
-                persist(project);
+                save(project);
                 Project res = new Project();
                 res.setId(project.getId());
                 return res;

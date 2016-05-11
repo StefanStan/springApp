@@ -20,7 +20,7 @@ public class StudentProjectRelDAOJpaImpl extends GenericDAOJpaImpl<StudentProjec
     @Override
     public StudentProjectRel findById(Integer id) {
 
-        return (StudentProjectRel) sessionFactory.getCurrentSession().get(StudentProjectRel.class, id);
+        return sessionFactory.getCurrentSession().get(StudentProjectRel.class, id);
     }
 
     @SuppressWarnings("unchecked")

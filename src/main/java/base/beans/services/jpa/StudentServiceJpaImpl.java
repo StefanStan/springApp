@@ -35,7 +35,7 @@ public class StudentServiceJpaImpl extends GenericServiceJpaImpl<Student, Intege
 
             try {
 
-                persist(student);
+                save(student);
                 Student res = new Student();
                 res.setId(student.getId());
                 return res;

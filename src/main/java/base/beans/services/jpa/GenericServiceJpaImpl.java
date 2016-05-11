@@ -16,7 +16,7 @@ public abstract class GenericServiceJpaImpl<T, Id extends Serializable> implemen
     public abstract GenericDAO getDao() ;
 
     @Override
-    public void persist(T entity) {
+    public void save(T entity) {
 
         getDao().persists(entity);
     }
