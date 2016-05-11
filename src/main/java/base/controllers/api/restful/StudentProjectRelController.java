@@ -22,7 +22,7 @@ import java.util.List;
 public class StudentProjectRelController {
 
     @Autowired
-    @Qualifier("studentProjectRelServiceJpaImpl")
+    @Qualifier("studentProjectRelServiceSpringDataImpl")
     StudentProjectRelService service;
 
     @RolesAllowed({"ADMIN","user"})

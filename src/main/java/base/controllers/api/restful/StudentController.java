@@ -19,7 +19,7 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    @Qualifier("studentServiceJpaImpl")
+    @Qualifier("studentServiceSpringDataImpl")
     StudentService service;
 
     // Spring annotation virtually equivalent with @RolesAllowed - except for...

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-4.2.xsd
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
-    http://www.springframework.org/schema/aop
-    http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+     http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <context:component-scan base-package="base" />
     <context:spring-configured />
     <context:annotation-config />
 
-    <!-- Let spring scan for Transactional components (ex: @Transactional) -->
+    <!-- Let spring scan for Transactional components (ex: @Transa`ctional) -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- Define datasource bean -->
@@ -34,41 +34,38 @@
         <property name="packagesToScan" value="base.beans.entities" />
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL94Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">validate</prop>
             </props>
         </property>
     </bean>
-    <!-- Define transaction manager -->
-    <bean id="transactionManager"
-          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
+
+    <!-- Spring DATA config -->
+    <jpa:repositories base-package="base.beans.repositories" entity-manager-factory-ref="emf"/>
+
+    <bean id="emf"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="packagesToScan" value="base.beans.entities" />
+        <property name="dataSource" ref="dataSource" />
+
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">validate</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL94Dialect</prop>
+            </props>
+        </property>
+
+        <property name="persistenceProvider">
+            <bean class="org.hibernate.jpa.HibernatePersistenceProvider"/>
+        </property>
+
     </bean>
 
-    <!-- the transactional advice (what 'happens'; see the <aop:advisor/> bean below) -->
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <!-- the transactional semantics... -->
-        <tx:attributes>
-            <!-- all methods starting with 'get' are read-only -->
-            <tx:method name="get*" read-only="true"/>
-            <tx:method name="find*" read-only="true"/>
-            <!-- other methods use the default transaction settings (see below) -->
-            <tx:method name="*" propagation="REQUIRED" />
-        </tx:attributes>
-    </tx:advice>
-
-    <aop:config>
-        <aop:pointcut id="transactionAnnotatedClass" expression="@within(org.springframework.transaction.annotation.Transactional)"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionAnnotatedClass"/>
-    </aop:config>
-
-    <!--
-    Important for @Secured annotations to work.
-    Here we enable all three of them - @Secured, @PreAuthorize and @RolesAllowed. You may choose what you use.
-    Check MainRestController for examples.
-    -->
-    <!--<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled" jsr250-annotations="enabled"/>-->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emf" />
+    </bean>
 
     <import resource="rest-servlet.xml"/>
     <import resource="spring-ws-servlet.xml"/>

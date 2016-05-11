@@ -26,7 +26,7 @@ public class StudentProjectRel implements Serializable {
     @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false)
     private Project project;
 
-    @Column(name = "rank")
+    @Column(name = "rank", nullable = false)
     private int rank;
 
     public int getRank() {

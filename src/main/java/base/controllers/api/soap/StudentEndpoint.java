@@ -19,7 +19,7 @@ import javax.annotation.security.RolesAllowed;
 public class StudentEndpoint {
 
     @Autowired
-    @Qualifier("studentServiceJpaImpl")
+    @Qualifier("studentServiceSpringDataImpl")
     StudentService service;
 
     @RolesAllowed({"ADMIN","user"})

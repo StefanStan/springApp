@@ -1,7 +1,7 @@
 package base.controllers.api.restful;
 
 import base.beans.entities.Project;
-import base.beans.services.jpa.ProjectServiceJpaImpl;
+import base.beans.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ public class ProjectController {
 
     @Autowired
     @Qualifier("projectServiceJpaImpl")
-    ProjectServiceJpaImpl service;
+    ProjectService service;
 
     @RolesAllowed({"ADMIN","user"})
     @RequestMapping(value = "/projects",
