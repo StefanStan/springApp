@@ -263,6 +263,13 @@
             <version>2.2.5</version>
         </dependency>
 
+        <!-- Liquibase -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+
         <!-- Other -->
         <dependency>
             <groupId>wsdl4j</groupId>

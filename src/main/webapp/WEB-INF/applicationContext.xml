@@ -41,10 +41,16 @@
         </property>
     </bean>
 
+    <!-- Liquibase -->
+    <bean id="liquibaseUpdater" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource" />
+        <property name="changeLog" value="classpath:liquibase\master.changelog.xml" />
+    </bean>
+
     <!-- Spring DATA config -->
     <jpa:repositories base-package="base.beans.repositories" entity-manager-factory-ref="emf"/>
 
-    <bean id="emf"
+    <bean id="emf" depends-on="liquibaseUpdater"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="packagesToScan" value="base.beans.entities" />
         <property name="dataSource" ref="dataSource" />

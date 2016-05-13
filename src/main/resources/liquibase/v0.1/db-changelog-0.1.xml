@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="12345678-1" author="Stefan Stan">
+
+        <preConditions>
+            <not> <tableExists tableName="students"/> </not>
+            <and> <not> <tableExists tableName="projects"/> </not> </and>
+            <and> <not> <tableExists tableName="student_project_rels"/> </not> </and>
+        </preConditions>
+
+        <createTable tableName="students">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)"/>
+        </createTable>
+
+        <createTable tableName="projects">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)"/>
+            <column name="capacity" type="double"/>
+        </createTable>
+
+        <createTable tableName="student_project_rels">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="student_id" type="int"/>
+            <column name="project_id" type="int"/>
+            <column name="rank" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="student_id"
+                                 baseTableName="student_project_rels"
+                                 constraintName="fk_student_project_rels_students"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="students"/>
+        <addForeignKeyConstraint baseColumnNames="project_id"
+                                 baseTableName="student_project_rels"
+                                 constraintName="fk_student_project_rels_projects"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="projects"/>
+    </changeSet>
+</databaseChangeLog>
