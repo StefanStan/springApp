@@ -1,3 +1,5 @@
 .idea/
 springApp.iml
 target/
+RememberDesignPatterns/.idea
+RememberDesignPatterns/RememberDesignPatterns.iml
